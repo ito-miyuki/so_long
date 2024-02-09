@@ -33,36 +33,47 @@ static int check_e_and_p(char *map_str, char c)
 	 }
 	else
 	 {
-		printf("Error\n");
+		ft_printf("Error\n"); // there is more than one E/P
 	 	return (0);
 	 }
 	// for testing
 }
 
-static int contain_invalid(char *map_str, char c)
+static int no_invalid_char(char *map_str)
 {
 	int i;
 	i = 0;
 	while (map_str[i] != '\0')
 	{
-		if (map_str[i] != )
-			return (1); // if it's true = nesessary char found
+		if (map_str[i] != 'E' && map_str[i] != 'P' && map_str[i] != 'C' 
+			&& map_str[i] != '1' && map_str[i] != '0' && map_str[i] != '\n')
+			return (0); // if it's false = it contains invalid char
 		i++;
 	}
-	return (0); // if it's false = nesessary char NOT found
+	printf("great, there is no invalid char\n");
+	return (1); // if it's true = there is no invalid char
 }
 
 static int contain_item(char *map_str, char c)
 {
 	int i;
+	int count;
+
 	i = 0;
+	count = 0;
 	while (map_str[i] != '\0')
 	{
-		if (map_str[i] == c)
-			return (1); // if it's true = nesessary char found
+		if (map_str[i] == c) // if it's true = nesessary char found
+			count++;
 		i++;
 	}
-	return (0); // if it's false = nesessary char NOT found
+	if (count == 0) // no item
+	{
+		printf("Error! item is missing\n");
+	 	return (0);
+	}
+	else //there is at least one item
+		return (1);
 }
 
 
@@ -77,12 +88,13 @@ int validate_map(char *map_str)
 	// 	printf("C is missing\n");
 	// for testing
 
-	if (check_e_and_p(map_str, 'E') && check_e_and_p(map_str, 'P') && contain_item(map_str, 'C'))
+	if (check_e_and_p(map_str, 'E') && check_e_and_p(map_str, 'P')
+		&& contain_item(map_str, 'C') && no_invalid_char(map_str))
 	{
 		printf("It is a validate map\n"); // delete it!
 		return (1);
 	}
 	else
-		printf("Error\n"); // delete it!
+		printf("Error! Map is invalid\n"); 
 	return (0);
 }

@@ -8,8 +8,8 @@
 
 # include "libft.h"
 
-int main(void);
-char *read_map(char *map);
-int validate_map(char *map_str);
+int		main(void);
+char	*read_map(char *map);
+int		validate_map(char *map_str);
 
 #endif
