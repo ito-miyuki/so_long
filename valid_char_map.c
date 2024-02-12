@@ -6,11 +6,9 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/02/12 14:15:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/12 17:03:34 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "so_long.h"
 
@@ -53,7 +51,7 @@ static int check_e_and_p(char *map_str, char c)
 	// for testing
 }
 
-static int no_invalid_char(char *map_str)
+static int is_valid_char(char *map_str)
 {
 	int i;
 	i = 0;
@@ -91,7 +89,7 @@ static int contain_item(char *map_str, char c)
 }
 
 
-int validate_map(char *map_str)
+int valid_char_map(char *map_str)
 {
 	// for testing
 	// if (!(check_e_and_p(map_str, 'E')))
@@ -103,11 +101,8 @@ int validate_map(char *map_str)
 	// for testing
 
 	if (check_e_and_p(map_str, 'E') && check_e_and_p(map_str, 'P')
-		&& contain_item(map_str, 'C') && no_invalid_char(map_str))
-	{
-		printf("It is a validate map\n"); // delete it!
+		&& contain_item(map_str, 'C') && is_valid_char(map_str))
 		return (1);
-	}
 	else
 		printf("Error! Map is invalid\n"); 
 	return (0);

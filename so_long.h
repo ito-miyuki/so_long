@@ -10,6 +10,7 @@
 
 int		main(void);
 char	*read_map(char *map);
-int		validate_map(char *map_str);
+int		valid_char_map(char *map_str);
+int		valid_shape_map(char **map_array);
 
 #endif

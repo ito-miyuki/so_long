@@ -3,7 +3,7 @@ NAME = so_long
 LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
-SRCS =	read_map.c main.c validate_map.c
+SRCS =	read_map.c main.c valid_char_map.c  valid_shape_map.c 
 
 OBJS = $(SRCS:.c=.o)
 
