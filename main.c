@@ -1,41 +1,66 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 13:16:37 by mito              #+#    #+#             */
-/*   Updated: 2024/02/12 16:38:39 by mito             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "./MLX42/include/MLX42/MLX42.h"
 
+// Written by Bruh
 #include "so_long.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#define WIDTH 256
+#define HEIGHT 256
 
-// this main func is for testing read_map func
-int main(void) 
+int main(void)
 {
-    char *file_path = "./maps/map1.ber"; // テストファイルのパスを指定
-    char *map_str = read_map(file_path);
-    char **map_array;
+    void *mlx; // The magical mlx pointer
 
-    map_str = read_map(file_path);
-    map_array = ft_split(map_str, '\n');
-    if (map_str == NULL)
-    {
-        printf("File could not be read or does not exist.\n");
-        return (1);
-    }
-	if (valid_char_map(map_str))
-    {
-        printf("map char is valid\n"); //delete it!
-    	printf("File content:\n%s\n", map_str); //delete it!
-    }
-    if (valid_shape_map(map_array))
-        printf("map shape is valid"); //delete it!
-    else
-        printf("map is invalid"); //delete it!
-    
-    free(map_str);
-    return (0);
+    // Initialize mlx
+    mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+
+    // The window will stay open until you close it
+    mlx_loop(mlx);
+
+    return 0;
 }
+
+
+// // Exit the program as failure.
+// static void ft_error(void)
+// {
+// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
+
+// // Print the window width and height.
+// static void ft_hook(void* param)
+// {
+// 	const mlx_t* mlx = param;
+
+// 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
+// }
+
+// int32_t	main(void)
+// {
+
+// 	// MLX allows you to define its core behaviour before startup.
+// 	mlx_set_setting(MLX_MAXIMIZED, true);
+// 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+// 	if (!mlx)
+// 		ft_error();
+
+// 	/* Do stuff */
+
+// 	// Create and display the image.
+// 	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
+// 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+// 		ft_error();
+
+// 	// Even after the image is being displayed, we can still modify the buffer.
+// 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+
+// 	// Register a hook and pass mlx as an optional param.
+// 	// NOTE: Do this before calling mlx_loop!
+// 	mlx_loop_hook(mlx, ft_hook, mlx);
+// 	mlx_loop(mlx);
+// 	mlx_terminate(mlx);
+// 	return (EXIT_SUCCESS);
+// }
+

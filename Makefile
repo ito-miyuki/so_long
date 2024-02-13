@@ -3,11 +3,15 @@ NAME = so_long
 LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
-SRCS =	read_map.c main.c valid_char_map.c  valid_shape_map.c 
+MLX_DIR = ./MLX42
+
+SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c map_validation.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
+
+HEADERS	= -I ./include -I $(MLX_DIR)/include
 
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
@@ -17,8 +21,11 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) 
-		$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+LDFLAGS = -L$(MLX_DIR)/build -L/Users/mito/.brew/opt/glfw/lib
+LIBS = -lmlx42 -ldl -lglfw -pthread -lm
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(OBJS) $(LDFLAGS) $(LIBS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -29,6 +36,7 @@ $(LIBFT):
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
+	$(RM) $(MLX_DIR)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
