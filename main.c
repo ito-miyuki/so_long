@@ -8,6 +8,7 @@
 #define WIDTH 256
 #define HEIGHT 256
 
+/* DON'T DELETE IT! this is for opening a winfow 
 int main(void)
 {
     void *mlx; // The magical mlx pointer
@@ -19,6 +20,26 @@ int main(void)
     mlx_loop(mlx);
 
     return 0;
+}
+*/
+
+int main(int argc, char **argv)
+{
+   if (argc != 2)
+   {
+        printf("invalid input\n"); // change this part acccording to subject pdf
+        return (0); // change this part acccording to subject pdf exit(EXIT_SUCCESS) ???
+   }
+    if (is_ber(argv))
+    {
+        printf("file type is .ber\n"); //delete it!
+        validate_map(argv[1]);
+        
+    }
+    else
+        printf("file type is NOT .ber\n"); //delete it!
+    
+    return (0);
 }
 
 

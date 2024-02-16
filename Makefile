@@ -13,7 +13,8 @@ CC = cc
 
 HEADERS	= -I ./include -I $(MLX_DIR)/include
 
-CFLAGS = -Wall -Wextra -Werror -I./libft
+CFLAGS = -Wall -Wextra -Werror -I./libft -g
+#-g is for debugging, remove it before submitting
 
 AR = ar rcs
 

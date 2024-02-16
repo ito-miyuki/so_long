@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:16:37 by mito              #+#    #+#             */
-/*   Updated: 2024/02/13 15:17:55 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/16 14:39:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// this main func is for testing read_map func
-int validate_map(void) 
+int is_ber(char *file_name)
 {
-    char *file_path = "./maps/map1.ber"; // テストファイルのパスを指定
-    char *map_str = read_map(file_path);
-    char **map_array;
+    int len;
+    char *format;
 
-    map_str = read_map(file_path);
+    len = ft_strlen(file_name);
+    format = ".ber";
+    //if (len > 4) // これいるか？
+    len = ft_strlen(file_name) - 4;
+    if (ft_strncmp(&file_name[len], format, 4) == 0)
+        return (1); // yes, it's .ber
+    else
+        return (0);  // no, file name is not .ber
+        
+}
+
+int validate_map(char *argv) 
+{
+    char *map_str;
+    char **map_array;
+    t_game *data;
+
+    map_str = read_map(argv);
     map_array = ft_split(map_str, '\n');
     if (map_str == NULL)
     {
@@ -27,15 +42,12 @@ int validate_map(void)
         return (1);
     }
 	if (valid_char_map(map_str))
-    {
         printf("map char is valid\n"); //delete it!
-    	printf("File content:\n%s\n", map_str); //delete it!
-    }
     if (valid_shape_map(map_array))
         printf("map shape is valid"); //delete it!
     else
-        printf("map is invalid"); //delete it!
-    
+        printf("map is invalid\n"); //delete it!
+    printf("File content:\n%s\n", map_str); //delete it!
     free(map_str);
     return (0);
 }
