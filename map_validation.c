@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:16:37 by mito              #+#    #+#             */
-/*   Updated: 2024/02/16 14:39:35 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/16 15:51:37 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int validate_map(char *argv)
 	if (valid_char_map(map_str))
         printf("map char is valid\n"); //delete it!
     if (valid_shape_map(map_array))
-        printf("map shape is valid"); //delete it!
+        printf("map shape is valid\n"); //delete it!
     else
         printf("map is invalid\n"); //delete it!
     printf("File content:\n%s\n", map_str); //delete it!
+    data = init_game_struct(map_array);
     free(map_str);
     return (0);
 }

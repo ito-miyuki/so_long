@@ -30,11 +30,10 @@ int main(int argc, char **argv)
         printf("invalid input\n"); // change this part acccording to subject pdf
         return (0); // change this part acccording to subject pdf exit(EXIT_SUCCESS) ???
    }
-    if (is_ber(argv))
+    if (is_ber(argv[1]))
     {
         printf("file type is .ber\n"); //delete it!
         validate_map(argv[1]);
-        
     }
     else
         printf("file type is NOT .ber\n"); //delete it!

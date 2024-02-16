@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/02/12 17:03:34 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/16 15:26:36 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int check_e_and_p(char *map_str, char c)
 		i++;
 	}
 	/*
-	//use this one below↓
+	//use this one↓
 	if (count == 1)
 		return (1); // there is only one Exit and Starting point
 	else if (count == 0)
@@ -40,7 +40,7 @@ static int check_e_and_p(char *map_str, char c)
 	 	return (1);
 	 else if (count == 0)
 	 {
-		printf("E/P is missing\n");
+		printf("E or P is missing\n");
 	 	return (0);
 	 }
 	else
@@ -91,15 +91,6 @@ static int contain_item(char *map_str, char c)
 
 int valid_char_map(char *map_str)
 {
-	// for testing
-	// if (!(check_e_and_p(map_str, 'E')))
-	// 	printf("E is missing\n");
-	// if (!(check_e_and_p(map_str, 'P')))
-	// 	printf("P is missing\n");
-	// if (!(contain_item(map_str, 'C')))
-	// 	printf("C is missing\n");
-	// for testing
-
 	if (check_e_and_p(map_str, 'E') && check_e_and_p(map_str, 'P')
 		&& contain_item(map_str, 'C') && is_valid_char(map_str))
 		return (1);

@@ -5,7 +5,7 @@ LIBFT = ./libft/libft.a
 
 MLX_DIR = ./MLX42
 
-SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c map_validation.c
+SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c map_validation.c init_structs.c
 
 OBJS = $(SRCS:.c=.o)
 

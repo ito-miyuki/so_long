@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/02/12 17:06:01 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/16 15:27:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,6 @@ static int is_wall(char **map_array)
 	while (map_array[last_row] != NULL)
 		last_row++;
 	last_idx = ft_strlen(map_array[0]) - 1;
-	//printf("last low is %d\n", last_row);
-	//printf("last idx is %d\n", last_idx);
-
 	if (!only_char(map_array[0], '1'))
 			return (0);
 	while (map_array[i] != NULL)
