@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   load_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/02/20 11:39:25 by mito             ###   ########.fr       */
+/*   Created: 2024/02/20 13:02:59 by mito              #+#    #+#             */
+/*   Updated: 2024/02/20 14:07:11 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	row_count(char **map_array)
+t_img *load_player_texture(mlx_t *mlx, t_img *img)
 {
-	int i;
-	i = 0;
-	while (map_array[i] != NULL)
-		i++;
-	return (i);
+	mlx_texture_t *player;
+	
+	player = mlx_load_png("./png/capy_right.png");
+	// add error handling;
+	img->player = mlx_texture_to_image(mlx, player);
+	mlx_delete_texture(player);
+	return (img);
 }
 
-t_game *init_game_struct(char **map_array)
-{
-	t_game *game;
-	
-	game = (t_game *)ft_calloc(1, sizeof(t_game)); // why do I need to type cast here?
-	if (!game)
-	{
-		// free?
-		return (0);
-	}
-	game->grid = map_array;
-	game->width = ft_strlen(map_array[0]);
-	game->height = row_count(map_array);
-	return (game);
-}

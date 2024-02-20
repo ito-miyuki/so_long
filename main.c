@@ -2,27 +2,57 @@
 
 // Written by Bruh
 #include "so_long.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 #define WIDTH 256
 #define HEIGHT 256
 
-/* DON'T DELETE IT! this is for opening a winfow 
-int main(void)
+# define PIXELS 64
+# define EMOVE 30
+
+void image_select(t_game *data, size_t y, size_t x)
 {
-    void *mlx; // The magical mlx pointer
+    size_t img_size;
 
-    // Initialize mlx
-    mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+    img_size = 32;
+    if (data->grid[y][x] == 'P')
+    {
+        if (mlx_image_to_window(data->mlx, data->img->player, x * PIXELS, y * PIXELS) < 0)
+            return ; // please modifiy it!
+    }
+}
 
-    // The window will stay open until you close it
-    mlx_loop(mlx);
+int main(int argc, char **argv)
+{
+    //t_img   *images;
+    t_game  *game;
 
+    if (argc != 2) //check arg count
+   {
+        printf("invalid input\n"); // change this part acccording to subject pdf
+        return (0); // change this part acccording to subject pdf exit(EXIT_SUCCESS) ???
+   }
+   if (!(is_ber(argv[1]))) // check map file format
+    {
+        printf("file type is NOT .ber\n"); //delete it!
+        return (0);
+    }
+    game = init_map_data(argv[1]);
+    //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+    game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
+    if (!game->mlx)
+		return (EXIT_FAILURE);
+    //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+    // mlx_texture_t* texture = mlx_load_png("./png/capy_right.png");
+    // mlx_image_t* img = mlx_texture_to_image(mlx, texture);
+    
+    //image_select(game, game->height, game->width);
+    //mlx_image_t
+
+    mlx_loop(game->mlx); // The window will stay open until you close it
     return 0;
 }
-*/
 
+/*
+// this is for map validation test
 int main(int argc, char **argv)
 {
    if (argc != 2)
@@ -40,6 +70,7 @@ int main(int argc, char **argv)
     
     return (0);
 }
+*/
 
 
 // // Exit the program as failure.
