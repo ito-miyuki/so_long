@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:02:59 by mito              #+#    #+#             */
-/*   Updated: 2024/02/21 13:50:10 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/21 14:32:46 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_img *load_player_texture(mlx_t *mlx, t_img *img)
 {
 	mlx_texture_t *player;
 	
-	player = mlx_load_png("./png/capy_right.png");
+	player = mlx_load_png("./png/player.png");
 	if (!player)
 	{
 		printf ("failed at load player texture func on line no 36"); // delet it
