@@ -12,7 +12,7 @@
 #define WIDTH 256
 #define HEIGHT 256
 
-# define PIXELS 64
+# define PIXELS 32
 # define EMOVE 30
 
 typedef struct s_img
@@ -28,8 +28,8 @@ typedef struct s_game
 {
 	//void 	*mlx;
 	char	**grid;
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 	t_img	*img;
 	mlx_t	*mlx;
 } t_game;
@@ -43,6 +43,10 @@ int		valid_shape_map(char **map_array);
 int		is_ber(char *file_name);
 t_game *init_game_struct(char **map_array);
 
-void image_select(t_game *data, size_t y, size_t x);
+void 	image_select(t_game *data, size_t y, size_t x);
+t_img	*init_img_struct(mlx_t *mlx);
 
+t_img	*load_floor_texture(mlx_t *mlx, t_img *img);
+t_img	*load_player_texture(mlx_t *mlx, t_img *img);
+void 	fill_background(t_game *data);
 #endif

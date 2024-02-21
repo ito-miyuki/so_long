@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/02/20 14:57:20 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/21 11:02:02 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_game *init_map_data(char *argv)
     // printf("File content:\n%s\n", map_str); //delete it!
     data = init_game_struct(map_array);
     free(map_str);
+
     return (data);
 }
 

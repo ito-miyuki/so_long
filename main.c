@@ -5,26 +5,17 @@
 #define WIDTH 256
 #define HEIGHT 256
 
-# define PIXELS 64
-# define EMOVE 30
+// # define PIXELS 64
+// # define EMOVE 30
 
-void image_select(t_game *data, size_t y, size_t x)
-{
-    size_t img_size;
-
-    img_size = 32;
-    if (data->grid[y][x] == 'P')
-    {
-        if (mlx_image_to_window(data->mlx, data->img->player, x * PIXELS, y * PIXELS) < 0)
-            return ; // please modifiy it!
-    }
-}
 
 int main(int argc, char **argv)
 {
-    //t_img   *images;
     t_game  *game;
+    t_img   *images;
 
+    // argc = 2;
+    // argv[1] = "maps/map1.ber";
     if (argc != 2) //check arg count
    {
         printf("invalid input\n"); // change this part acccording to subject pdf
@@ -40,13 +31,12 @@ int main(int argc, char **argv)
     game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
     if (!game->mlx)
 		return (EXIT_FAILURE);
+    images = init_img_struct(game->mlx);
+    game->img = images;
     //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
-    // mlx_texture_t* texture = mlx_load_png("./png/capy_right.png");
     // mlx_image_t* img = mlx_texture_to_image(mlx, texture);
-    
-    //image_select(game, game->height, game->width);
-    //mlx_image_t
-
+    fill_background(game);
+    image_select(game, game->height, game->width);
     mlx_loop(game->mlx); // The window will stay open until you close it
     return 0;
 }
