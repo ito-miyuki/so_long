@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 09:46:20 by mito              #+#    #+#             */
-/*   Updated: 2024/02/21 12:43:57 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/21 13:38:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,41 @@ void image_select(t_game *data, size_t y, size_t x)
         if (mlx_image_to_window(data->mlx, data->img->player, x * PIXELS, y * PIXELS) < 0)
             return ; // please modifiy it!
     }
-	if (data->grid[y][x] == 'P')
+	if (data->grid[y][x] == '1')
     {
-        if (mlx_image_to_window(data->mlx, data->img->player, x * PIXELS, y * PIXELS) < 0)
+        if (mlx_image_to_window(data->mlx, data->img->grass, x * PIXELS, y * PIXELS) < 0)
             return ; // please modifiy it!
     }
+	if (data->grid[y][x] == 'C')
+    {
+        if (mlx_image_to_window(data->mlx, data->img->item, x * PIXELS, y * PIXELS) < 0)
+            return ; // please modifiy it!
+    }
+	if (data->grid[y][x] == 'E')
+    {
+        if (mlx_image_to_window(data->mlx, data->img->exit, x * PIXELS, y * PIXELS) < 0)
+            return ; // please modifiy it!
+    }
+}
+
+void render_map(t_game *data)
+{
+	size_t	x;
+	size_t	y;
+
+	x = 0;
+	y = 0;
+	while (y < data->height)
+	{
+		
+		x = 0;
+		while (x < data->width)
+		{
+			image_select(data, y, x);
+			x++;
+		}
+		y++;
+	}
 }
 
 void fill_background(t_game *data)
@@ -42,7 +72,6 @@ void fill_background(t_game *data)
 		x = 0;
 		while (x < data->width)
 		{
-			printf ("you're in fill_background loop\n");
 			//mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS);
 			if (mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS) < 0)
 			{
@@ -50,10 +79,7 @@ void fill_background(t_game *data)
 				return ;
 			}
 			x++;
-			//printf("x incremented\n");
 		}
 		y++;
-		//printf("y incremented\n");
 	}
-	printf ("complete fill background func\n");
 }

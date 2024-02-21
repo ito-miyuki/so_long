@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
     // mlx_image_t* img = mlx_texture_to_image(mlx, texture);
     fill_background(game);
-    image_select(game, game->height, game->width);
+    render_map(game);
     mlx_loop(game->mlx); // The window will stay open until you close it
     return 0;
 }

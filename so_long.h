@@ -48,5 +48,10 @@ t_img	*init_img_struct(mlx_t *mlx);
 
 t_img	*load_floor_texture(mlx_t *mlx, t_img *img);
 t_img	*load_player_texture(mlx_t *mlx, t_img *img);
+t_img 	*load_grass_texture(mlx_t *mlx, t_img *img);
+t_img 	*load_item_texture(mlx_t *mlx, t_img *img);
+t_img *load_exit_texture(mlx_t *mlx, t_img *img);
+
 void 	fill_background(t_game *data);
+void 	render_map(t_game *data);
 #endif
