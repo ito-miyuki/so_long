@@ -31,7 +31,8 @@ typedef struct s_game
 	size_t	width;
 	size_t	height;
 	t_img	*img;
-	mlx_t	*mlx;
+	mlx_t	*mlx; // これは何のため？
+	
 } t_game;
 
 //int	main(void);
@@ -54,4 +55,8 @@ t_img *load_exit_texture(mlx_t *mlx, t_img *img);
 
 void 	fill_background(t_game *data);
 void 	render_map(t_game *data);
+
+// for move function
+void moves_keyhook(mlx_key_data_t keydata, void* data);
+
 #endif

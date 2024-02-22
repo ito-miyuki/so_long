@@ -4,13 +4,16 @@ LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
 MLX_DIR = ./MLX42
+MLX42 = ./MLX42/build/libmlx42.a
 
 SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c init_map_data.c init_structs.c \
-		load_images.c render_map.c
+		load_images.c render_map.c moves.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
+
+##MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 HEADERS	= -I ./include -I $(MLX_DIR)/include
 
@@ -23,22 +26,25 @@ RM = rm -f
 
 all: $(NAME)
 
-LDFLAGS = -L$(MLX_DIR)/build -L/Users/mito/.brew/opt/glfw/lib
+LDFLAGS = -L$(MLX_DIR)/build -L/Users/$(USER)/.brew/opt/glfw/lib
+
 LIBS = -lmlx42 -ldl -lglfw -pthread -lm
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) $(LIBS) -L$(LIBFT_DIR) -lft -o $(NAME)
+$(NAME): $(LIBFT) $(MLX42) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-.o: .c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(MLX42):
+	$(MAKE) -C $(MLX_DIR)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
-	$(RM) $(MLX_DIR)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean

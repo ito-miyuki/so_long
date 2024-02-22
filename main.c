@@ -27,16 +27,14 @@ int main(int argc, char **argv)
         return (0);
     }
     game = init_map_data(argv[1]);
-    //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
     game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
     if (!game->mlx)
 		return (EXIT_FAILURE);
     images = init_img_struct(game->mlx);
     game->img = images;
-    //game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
-    // mlx_image_t* img = mlx_texture_to_image(mlx, texture);
     fill_background(game);
     render_map(game);
+    mlx_key_hook(game->mlx, moves_keyhook, game);
     mlx_loop(game->mlx); // The window will stay open until you close it
     return 0;
 }
