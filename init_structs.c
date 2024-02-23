@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/02/22 15:39:39 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/23 17:25:36 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_game *init_game_struct(char **map_array)
 	game->height = row_count(map_array);
 	game->player_x = get_position(game, 'P', 'x');
 	game->player_y = get_position(game, 'P', 'y');
-	// game->exit_x = get_position(game, 'E', 'x');
-	// game->exit_y = get_position(game, 'E', 'y');
+	game->exit_x = get_position(game, 'E', 'x');
+	game->exit_y = get_position(game, 'E', 'y');
 	return (game);
 }

@@ -34,6 +34,7 @@ typedef struct s_game
 	size_t			player_y;
 	size_t			exit_x;
 	size_t			exit_y;
+	size_t			item;
 	t_img			*img;
 	mlx_t			*mlx; // これは何のため？
 	mlx_texture_t	*player_up;
@@ -46,6 +47,9 @@ char	*read_map(char *map);
 int		valid_char_map(char *map_str);
 int		valid_shape_map(char **map_array);
 int		is_ber(char *file_name);
+int 	check_path(t_game *temp, size_t y, size_t x);
+void	ft_flood_fill(t_game *game);
+void	free_grid(char **grid, size_t height);
 
 size_t	get_position(t_game *game, char c, char xy);
 t_game *init_game_struct(char **map_array);
@@ -68,5 +72,7 @@ t_game	*move_up(t_game *game);
 t_game 	*move_down(t_game *game);
 t_game 	*move_right(t_game *game);
 t_game 	*move_left(t_game *game);
+
+int check_path(t_game *temp, size_t y, size_t x);
 
 #endif
