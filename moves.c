@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/02/22 15:55:11 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/27 16:50:26 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,49 @@
 
 t_game *move_up(t_game *game)
 {
-	game->player_y -= 1;
-	game->img->player->instances[0].y -= 1 * PIXELS;
+	if (game->grid[game->player_y - 1][game->player_x] != '1' 
+		&& game->grid[game->player_y - 1][game->player_x] != 'E')
+		{
+			game->player_y -= 1;
+			game->img->player->instances[0].y -= 1 * PIXELS;
+		}
 	return (game);
 }
 
 t_game *move_down(t_game *game)
 {
-	game->player_y += 1;
-	game->img->player->instances[0].y += 1 * PIXELS;
+	if (game->grid[game->player_y + 1][game->player_x] != '1'
+		&& game->grid[game->player_y + 1][game->player_x] != 'E')
+		{
+			game->player_y += 1;
+			game->img->player->instances[0].y += 1 * PIXELS;	
+		}
 	return (game);
 }
 
 t_game *move_right(t_game *game)
 {
-	game->player_x += 1;
-	game->img->player->instances[0].x += 1 * PIXELS;
+	if (game->grid[game->player_y][game->player_x + 1] != '1'
+		&& game->grid[game->player_y][game->player_x + 1] != 'E')
+		{
+			if (game->grid[game->player_y][game->player_x + 1] == 'C')
+			{
+				remove_item(game, game->player_y, game->player_x + 1);
+			}
+			game->player_x += 1;
+			game->img->player->instances[0].x += 1 * PIXELS;
+		}
 	return (game);
 }
 
 t_game *move_left(t_game *game)
 {
-	game->player_x -= 1;
-	game->img->player->instances[0].x -= 1 * PIXELS;
+	if (game->grid[game->player_y][game->player_x - 1] != '1'
+		&& game->grid[game->player_y][game->player_x - 1] != 'E')
+		{
+			game->player_x -= 1;
+			game->img->player->instances[0].x -= 1 * PIXELS;	
+		}
 	return (game);
 }
 

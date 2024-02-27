@@ -52,7 +52,8 @@ void	ft_flood_fill(t_game *game);
 void	free_grid(char **grid, size_t height);
 
 size_t	get_position(t_game *game, char c, char xy);
-t_game *init_game_struct(char **map_array);
+t_game 	*init_game_struct(char **map_array);
+size_t 	count_items(t_game *game);
 
 void 	image_select(t_game *data, size_t y, size_t x);
 t_img	*init_img_struct(mlx_t *mlx);
@@ -68,6 +69,7 @@ void 	render_map(t_game *data);
 
 // for move function
 void	moves_keyhook(mlx_key_data_t keydata, void *data);
+void	remove_item(t_game *game, int y, int x);
 t_game	*move_up(t_game *game);
 t_game 	*move_down(t_game *game);
 t_game 	*move_right(t_game *game);
