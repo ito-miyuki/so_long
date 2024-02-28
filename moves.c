@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/28 14:58:21 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@ t_game *move_up(t_game *game)
 {
 	if (game->grid[game->player_y - 1][game->player_x] != '1' 
 		&& game->grid[game->player_y - 1][game->player_x] != 'E')
+	{
+		if (game->grid[game->player_y - 1][game->player_x] == 'C')
 		{
-			game->player_y -= 1;
-			game->img->player->instances[0].y -= 1 * PIXELS;
+			remove_item(game, game->player_y - 1, game->player_x);
+			game->grid[game->player_y - 1][game->player_x] = '0';
+			game->collected += 1;
 		}
+		game->player_y -= 1;
+		game->img->player->instances[0].y -= 1 * PIXELS;
+		game->steps += 1;
+	}
+	else if (game->grid[game->player_y - 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
+		check_game_status(game);
 	return (game);
 }
 
@@ -27,10 +36,19 @@ t_game *move_down(t_game *game)
 {
 	if (game->grid[game->player_y + 1][game->player_x] != '1'
 		&& game->grid[game->player_y + 1][game->player_x] != 'E')
+	{
+		if (game->grid[game->player_y + 1][game->player_x] == 'C')
 		{
-			game->player_y += 1;
-			game->img->player->instances[0].y += 1 * PIXELS;	
+			remove_item(game, game->player_y + 1, game->player_x);
+			game->grid[game->player_y + 1][game->player_x] = '0';
+			game->collected += 1;
 		}
+		game->player_y += 1;
+		game->img->player->instances[0].y += 1 * PIXELS;
+		game->steps += 1;	
+	}
+	else if (game->grid[game->player_y + 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
+		check_game_status(game);
 	return (game);
 }
 
@@ -38,14 +56,19 @@ t_game *move_right(t_game *game)
 {
 	if (game->grid[game->player_y][game->player_x + 1] != '1'
 		&& game->grid[game->player_y][game->player_x + 1] != 'E')
+	{
+		if (game->grid[game->player_y][game->player_x + 1] == 'C')
 		{
-			if (game->grid[game->player_y][game->player_x + 1] == 'C')
-			{
-				remove_item(game, game->player_y, game->player_x + 1);
-			}
-			game->player_x += 1;
-			game->img->player->instances[0].x += 1 * PIXELS;
+			remove_item(game, game->player_y, game->player_x + 1);
+			game->grid[game->player_y][game->player_x + 1] = '0';
+			game->collected += 1;
 		}
+		game->player_x += 1;
+		game->img->player->instances[0].x += 1 * PIXELS;
+		game->steps += 1;
+	}
+	else if (game->grid[game->player_y][game->player_x + 1] == 'E') // it's temporaly. should implement a better solution
+		check_game_status(game);
 	return (game);
 }
 
@@ -53,19 +76,26 @@ t_game *move_left(t_game *game)
 {
 	if (game->grid[game->player_y][game->player_x - 1] != '1'
 		&& game->grid[game->player_y][game->player_x - 1] != 'E')
+	{
+		if (game->grid[game->player_y][game->player_x - 1] == 'C')
 		{
-			game->player_x -= 1;
-			game->img->player->instances[0].x -= 1 * PIXELS;	
+			remove_item(game, game->player_y, game->player_x - 1);
+			game->grid[game->player_y][game->player_x - 1] = '0';
+			game->collected += 1;
 		}
+		game->player_x -= 1;
+		game->img->player->instances[0].x -= 1 * PIXELS;	
+		game->steps += 1;
+	}
+	else if (game->grid[game->player_y][game->player_x - 1] == 'E') // it's temporaly. should implement a better solution
+		check_game_status(game);
 	return (game);
 }
 
 void moves_keyhook(mlx_key_data_t keydata, void *data)
 {
-	// THIS IS JUST A TEST
-	 t_game *game;
-
-	 game = (t_game *)data;
+	t_game *game;
+	game = (t_game *)data;
 	// If we PRESS the 'W' key, it moves to "UP"
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		move_up(game);

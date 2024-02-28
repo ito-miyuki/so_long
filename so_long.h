@@ -30,15 +30,16 @@ typedef struct s_game
 	char			**grid;
 	size_t			width;
 	size_t			height;
+	size_t			item;
+	size_t			collected;
 	size_t			player_x;
 	size_t			player_y;
 	size_t			exit_x;
 	size_t			exit_y;
-	size_t			item;
+	size_t			steps;
 	t_img			*img;
 	mlx_t			*mlx; // これは何のため？
 	mlx_texture_t	*player_up;
-
 } t_game;
 
 int		main(int argc, char **argv);
@@ -75,6 +76,7 @@ t_game 	*move_down(t_game *game);
 t_game 	*move_right(t_game *game);
 t_game 	*move_left(t_game *game);
 
-int check_path(t_game *temp, size_t y, size_t x);
+int		check_path(t_game *temp, size_t y, size_t x);
+void	check_game_status(t_game *game);
 
 #endif
