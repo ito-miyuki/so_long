@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 13:34:37 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 16:25:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,10 @@ static int is_wall(char **map_array)
 	return (1);	
 }
 
-int valid_shape_map(char **map_array)
+void valid_shape_map(char **map_array)
 {
-	if (is_rectangle(map_array))
-		printf("map is rectangle\n"); // delete it
-	else
-		printf("map is NOT rectangle\n"); // delete it
-	if (is_wall(map_array))
-		printf("map is surrounded by wall\n"); // delete it 
-	else
-		printf("map is NOT surrounded by wall\n"); // delete it 
-	if (is_rectangle(map_array) && is_wall(map_array))
-		return (1);
-	else
-	{
-		printf("valid_shape_map didn't pass, sorry..\n"); //delete it!
-		exit (0);
-	}
-	return (0);
+	if (!(is_rectangle(map_array)))
+		error_message("map is not a rectangle");
+	if (!(is_wall(map_array)))
+		error_message("map is not surrounded by wall");
 }

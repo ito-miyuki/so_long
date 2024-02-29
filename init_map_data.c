@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 14:41:41 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:35:09 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int is_ber(char *file_name)
     if (ft_strncmp(&file_name[len], format, 4) == 0)
         return (1); // yes, it's .ber
     else
-        error_message("map file has to be .ber"); // no, file name is not .ber
-        
+        return (0); // no, file name is not .ber 
 }
 
 t_game *init_map_data(char *argv) 
@@ -36,16 +35,12 @@ t_game *init_map_data(char *argv)
 
     map_str = read_map(argv);
     if (map_str == NULL)
-    {
-        printf("File could not be read or does not exist.\n");
-        exit (1); // this one is a temporaly solution, replace it with something
-    }
+       error_message("File could not be read or does not exist.\n");
     map_array = ft_split(map_str, '\n');
 	valid_char_map(map_str);
     valid_shape_map(map_array);
     data = init_game_struct(map_array);
-    ft_flood_fill(data); // this is broken
+    ft_flood_fill(data);
     free(map_str);
-
     return (data);
 }

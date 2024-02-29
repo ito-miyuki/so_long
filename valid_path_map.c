@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 15:01:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 16:20:17 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	ft_flood_fill(t_game *game) // ここで全部コピーする
 	temp.grid = malloc(sizeof(char *) * temp.height);
 	if (!temp.grid)
 	{
-		printf ("Flood fill malloc fail\n"); // replace it with something according to ssubject.pdf
-		return ;
+		free_grid(temp.grid, temp.height);
+		error_message("temp.grid malloc fail\n"); // replace it with something according to ssubject.pdf
 	}
 	while (i < temp.height)
 	{
@@ -73,8 +73,8 @@ void	ft_flood_fill(t_game *game) // ここで全部コピーする
 	check_path(&temp, temp.player_x, temp.player_y);
 	if (!(temp.exit_x == 1 && temp.item == 0))
     {
-        printf("didn't pass Flood fill map validation\n");
-		exit (0);
-    }
+		free_grid(temp.grid, temp.height);
+		error_message("didn't pass Flood fill map validation");
+	}
 	free_grid(temp.grid, temp.height);
 }

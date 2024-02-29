@@ -47,8 +47,8 @@ typedef struct s_game
 int		main(int argc, char **argv);
 t_game 	*init_map_data(char *argv);
 char	*read_map(char *map);
-int		valid_char_map(char *map_str);
-int		valid_shape_map(char **map_array);
+void	valid_char_map(char *map_str);
+void	valid_shape_map(char **map_array);
 int		is_ber(char *file_name);
 int 	check_path(t_game *temp, size_t y, size_t x);
 void	ft_flood_fill(t_game *game);

@@ -14,22 +14,14 @@ int main(int argc, char **argv)
     t_game  *game;
     t_img   *images;
 
-    // argc = 2;
-    // argv[1] = "maps/map1.ber";
     if (argc != 2) //check arg count
-   {
-        printf("invalid input\n"); // change this part acccording to subject pdf
-        return (0); // change this part acccording to subject pdf exit(EXIT_SUCCESS) ???
-   }
+        error_message("invalid input. We can read onlly one map at a time");
    if (!(is_ber(argv[1]))) // check map file format
-    {
-        printf("file type is NOT .ber\n"); //delete it!
-        return (0);
-    }
-    game = init_map_data(argv[1]);
+        error_message("map file has to be .ber");
+    game = init_map_data(argv[1]); // in it map data and map validation
     game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
     if (!game->mlx)
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE); // should I use error message func here?
     images = init_img_struct(game->mlx);
     game->img = images;
     fill_background(game);

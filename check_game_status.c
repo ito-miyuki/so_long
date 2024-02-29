@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 14:38:17 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 16:37:56 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	print_moves_terminal(t_game *game)
 
 void check_game_status(t_game *game)
 {
-	//print_move func here?
 	if (game->collected == game->item)
 	{
+		ft_printf("Congrats! You made it!\nThank you for playing!");
 		mlx_close_window(game->mlx);
 	}
 	
