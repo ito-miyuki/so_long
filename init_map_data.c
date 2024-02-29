@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/02/27 14:27:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 14:41:41 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int is_ber(char *file_name)
     if (ft_strncmp(&file_name[len], format, 4) == 0)
         return (1); // yes, it's .ber
     else
-        return (0);  // no, file name is not .ber
+        error_message("map file has to be .ber"); // no, file name is not .ber
         
 }
 
@@ -40,20 +40,11 @@ t_game *init_map_data(char *argv)
         printf("File could not be read or does not exist.\n");
         exit (1); // this one is a temporaly solution, replace it with something
     }
-    
     map_array = ft_split(map_str, '\n');
-	if (valid_char_map(map_str))
-        printf("map char is valid\n"); //delete it!
-    if (valid_shape_map(map_array))
-        printf("map shape is valid\n"); //delete it!
-    else
-    {
-        printf("map shape is invalid\n"); //delete it!
-        exit (0);
-    }
-    // printf("File content:\n%s\n", map_str); //delete it!
+	valid_char_map(map_str);
+    valid_shape_map(map_array);
     data = init_game_struct(map_array);
-    //ft_flood_fill(data); // this is broken
+    ft_flood_fill(data); // this is broken
     free(map_str);
 
     return (data);

@@ -34,6 +34,7 @@ int main(int argc, char **argv)
     game->img = images;
     fill_background(game);
     render_map(game);
+    game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ", 8, game->height * 32 - 22); // prints moves
     mlx_key_hook(game->mlx, moves_keyhook, game);
     mlx_loop(game->mlx); // The window will stay open until you close it
     return 0;

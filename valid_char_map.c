@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/02/16 15:26:36 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 14:42:21 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,25 @@ static int check_e_and_p(char *map_str, char c)
 			count++;
 		i++;
 	}
-	/*
-	//use this one↓
 	if (count == 1)
-		return (1); // there is only one Exit and Starting point
-	else if (count == 0)
-		return (0);
+		return (1); // there is only one Exit/Starting point
 	else
 		ft_printf("Error\n");
 	return (0); // there is more than one Exit and Starting point
-	//use this one below↓
-	*/
-	if (count == 1)
-	 	return (1);
-	 else if (count == 0)
-	 {
-		printf("E or P is missing\n");
-	 	return (0);
-	 }
-	else
-	 {
-		ft_printf("Error\n"); // there is more than one E/P
-	 	return (0);
-	 }
-	// for testing
+	// ---for testing
+	// if (count == 1)
+	//  	return (1);
+	//  else if (count == 0)
+	//  {
+	// 	printf("E or P is missing\n");
+	//  	return (0);
+	//  }
+	// else
+	//  {
+	// 	ft_printf("Error\n"); // there is more than one E/P
+	//  	return (0);
+	//  }
+	// for testing---
 }
 
 static int is_valid_char(char *map_str)
@@ -95,6 +90,6 @@ int valid_char_map(char *map_str)
 		&& contain_item(map_str, 'C') && is_valid_char(map_str))
 		return (1);
 	else
-		printf("Error! Map is invalid\n"); 
+		error_message("You have invalid characters in your map");
 	return (0);
 }

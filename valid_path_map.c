@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/02/23 17:38:42 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:01:24 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_grid(char **grid, size_t height)
 
 int	check_path(t_game *temp, size_t y, size_t x)
 {
-	if (temp->grid[y][y] == '1')
+	if (temp->grid[y][x] == '1')
 		return (0);
 	if (temp->grid[y][x] == 'C')
 		temp->item--;
@@ -36,15 +36,14 @@ int	check_path(t_game *temp, size_t y, size_t x)
 		return (0);
 	}
 	temp->grid[y][x] = '1';
-	if (check_path(temp, y + 1, x)) // UP
+	if (check_path(temp, y + 1, x)) // DOWN
 		return (1);
-	if (check_path(temp, y - 1, x)) // DOWN
+	if (check_path(temp, y - 1, x)) // UP
 		return (1);
 	if (check_path(temp, y, x + 1)) // right
 		return (1);
 	if (check_path(temp, y, x - 1)) // left
 		return (1);
-	printf("check pass returns 0\n");
 	return (0);
 }
 
@@ -63,7 +62,7 @@ void	ft_flood_fill(t_game *game) // ここで全部コピーする
 	temp.grid = malloc(sizeof(char *) * temp.height);
 	if (!temp.grid)
 	{
-		printf ("Flood fill malloc fail"); // replace it with something according to ssubject.pdf
+		printf ("Flood fill malloc fail\n"); // replace it with something according to ssubject.pdf
 		return ;
 	}
 	while (i < temp.height)
@@ -74,7 +73,7 @@ void	ft_flood_fill(t_game *game) // ここで全部コピーする
 	check_path(&temp, temp.player_x, temp.player_y);
 	if (!(temp.exit_x == 1 && temp.item == 0))
     {
-        printf("didn't pass Flood fill map validation");
+        printf("didn't pass Flood fill map validation\n");
 		exit (0);
     }
 	free_grid(temp.grid, temp.height);

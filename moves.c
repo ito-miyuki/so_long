@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/02/28 14:58:21 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 11:42:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_game *move_up(t_game *game)
 		game->player_y -= 1;
 		game->img->player->instances[0].y -= 1 * PIXELS;
 		game->steps += 1;
+		print_moves_terminal(game);
+		print_moves_screen(game);
 	}
 	else if (game->grid[game->player_y - 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
 		check_game_status(game);
@@ -45,7 +47,9 @@ t_game *move_down(t_game *game)
 		}
 		game->player_y += 1;
 		game->img->player->instances[0].y += 1 * PIXELS;
-		game->steps += 1;	
+		game->steps += 1;
+		print_moves_terminal(game);
+		print_moves_screen(game);
 	}
 	else if (game->grid[game->player_y + 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
 		check_game_status(game);
@@ -66,6 +70,8 @@ t_game *move_right(t_game *game)
 		game->player_x += 1;
 		game->img->player->instances[0].x += 1 * PIXELS;
 		game->steps += 1;
+		print_moves_terminal(game);
+		print_moves_screen(game);
 	}
 	else if (game->grid[game->player_y][game->player_x + 1] == 'E') // it's temporaly. should implement a better solution
 		check_game_status(game);
@@ -86,6 +92,8 @@ t_game *move_left(t_game *game)
 		game->player_x -= 1;
 		game->img->player->instances[0].x -= 1 * PIXELS;	
 		game->steps += 1;
+		print_moves_terminal(game);
+		print_moves_screen(game);
 	}
 	else if (game->grid[game->player_y][game->player_x - 1] == 'E') // it's temporaly. should implement a better solution
 		check_game_status(game);

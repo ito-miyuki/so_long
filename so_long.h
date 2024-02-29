@@ -22,6 +22,8 @@ typedef struct s_img
 	mlx_image_t *floor;
 	mlx_image_t *grass;
 	mlx_image_t *exit;
+	mlx_image_t	*moves_print;
+	mlx_image_t *moves_nbr;
 } t_img;
 
 typedef struct s_game
@@ -78,5 +80,10 @@ t_game 	*move_left(t_game *game);
 
 int		check_path(t_game *temp, size_t y, size_t x);
 void	check_game_status(t_game *game);
+
+void	print_moves_terminal(t_game *game);
+void	print_moves_screen(t_game *game);
+
+void	error_message(char *message);
 
 #endif

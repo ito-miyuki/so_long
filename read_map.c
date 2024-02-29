@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:16:55 by mito              #+#    #+#             */
-/*   Updated: 2024/02/16 13:20:13 by mito             ###   ########.fr       */
+/*   Updated: 2024/02/29 09:01:27 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char *read_map(char *map) // here it recieves argv[1]
 	int		fd;
 
 	fd = open(map, O_RDONLY); //read a file, fd will be -1 if read fails
-	line_joint = calloc(1, 1);
+	line_joint = ft_calloc(1, 1);
 	if (!line_joint)
 		return (0);
 	while ((line = get_next_line(fd)) != NULL)
