@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 16:25:10 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/01 16:01:32 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int is_rectangle(char **map_array)
 int only_char(char *str, char c)
 {
 	int i;
+
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -41,42 +42,50 @@ int only_char(char *str, char c)
 	return (1);
 }
 
- /* what if the map is like this? is's closed and surrounded by wall: 
+ /* what if the map is like this? is it considered as closed or surrounded by wall?: 
   1111111111
   1E0000C001
   10000C0P11
   1111111110
  */
-static int is_wall(char **map_array) 
-{
-	int i;
-	int last_row;
-	int last_idx;
 
-	i = 1;
-	last_row = 0;
-	while (map_array[last_row] != NULL)
-		last_row++;
+static int check_wall_rows(char **map_array) //横にチェック
+{
+	int	i;
+	int	last_row;
+
+	i = 0;
+	last_row = row_count(map_array);
+	if (!(only_char(map_array[0], '1')))
+		return (0);
+	if (!(only_char(map_array[last_row], '1')))
+		return (0);
+	return (1);
+}
+
+static int check_wall_columns(char **map_array) //縦にチェック
+{
+	int	i;
+	int	last_idx;
+
+	i = 0;
 	last_idx = ft_strlen(map_array[0]) - 1;
-	if (!only_char(map_array[0], '1'))
-			return (0);
 	while (map_array[i] != NULL)
 	{
-		while (i > 0 && i < last_row - 1)
-		{
-			if ((map_array[i][0] != '1') || map_array[i][last_idx] != '1')
-				return (0);
-			i++;
-		}
-		if (i == last_row - 1)
-		{
-			if (!only_char(map_array[i], '1'))
-				return (0);
-		}
+		if ((map_array[i][0] != '1') || map_array[i][last_idx] != '1')
+			return (0);
 		i++;
 	}
-	return (1);	
+	return (1);
 }
+
+static int is_wall(char **map_array) 
+{
+	if (!(check_wall_columns(map_array) && check_wall_rows(map_array)))
+		return (0);
+	return (1);
+}
+
 
 void valid_shape_map(char **map_array)
 {

@@ -5,18 +5,14 @@
 #define WIDTH 256
 #define HEIGHT 256
 
-// # define PIXELS 64
-// # define EMOVE 30
-
-
 int main(int argc, char **argv)
 {
     t_game  *game;
     t_img   *images;
 
-    if (argc != 2) //check arg count
-        error_message("invalid input. We can read onlly one map at a time");
-   if (!(is_ber(argv[1]))) // check map file format
+    if (argc != 2)
+        error_message("invalid input. We can read only one map at a time");
+   if (!(is_ber(argv[1])))
         error_message("map file has to be .ber");
     game = init_map_data(argv[1]); // in it map data and map validation
     game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
@@ -32,42 +28,7 @@ int main(int argc, char **argv)
     return 0;
 }
 
-/*
-// this is for map validation test
-int main(int argc, char **argv)
-{
-   if (argc != 2)
-   {
-        printf("invalid input\n"); // change this part acccording to subject pdf
-        return (0); // change this part acccording to subject pdf exit(EXIT_SUCCESS) ???
-   }
-    if (is_ber(argv[1]))
-    {
-        printf("file type is .ber\n"); //delete it!
-        validate_map(argv[1]);
-    }
-    else
-        printf("file type is NOT .ber\n"); //delete it!
-    
-    return (0);
-}
-*/
 
-
-// // Exit the program as failure.
-// static void ft_error(void)
-// {
-// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-// 	exit(EXIT_FAILURE);
-// }
-
-// // Print the window width and height.
-// static void ft_hook(void* param)
-// {
-// 	const mlx_t* mlx = param;
-
-// 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-// }
 
 // int32_t	main(void)
 // {

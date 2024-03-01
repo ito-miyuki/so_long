@@ -6,16 +6,16 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 16:30:52 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/01 09:26:04 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int check_e_and_p(char *map_str, char c)
+static int	check_e_and_p(char *map_str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -30,9 +30,10 @@ static int check_e_and_p(char *map_str, char c)
 	return (0); // thi is invalid case. there is more than one Exit and Starting point or there us none
 }
 
-static int is_valid_char(char *map_str)
+static int	is_valid_char(char *map_str)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (map_str[i] != '\0')
 	{

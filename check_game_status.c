@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 16:37:56 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/01 09:23:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	error_message(char *message)
 {
-	// putstrとputendlの違いは改行があるかないかだけ
 	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(message, 2);
 	exit(1);

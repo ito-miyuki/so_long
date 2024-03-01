@@ -86,4 +86,5 @@ void	print_moves_screen(t_game *game);
 
 void	error_message(char *message);
 
+int		row_count(char **map_array);
 #endif
