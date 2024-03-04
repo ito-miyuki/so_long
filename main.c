@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 14:22:32 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/04 15:23:51 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,9 @@ int	main(int argc, char **argv)
 	game->img = images;
 	fill_background(game);
 	render_map(game);
-	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ", 8, game->height * 32 - 22); // prints moves
+	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ", 8, game->height * 32 - 22); // for prints Moves:
 	mlx_key_hook(game->mlx, moves_keyhook, game);
-	mlx_loop(game->mlx); // The window will stay open until you close it
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
 	return (0);
 }
-
-// int32_t	main(void)
-// {
-
-// 	// MLX allows you to define its core behaviour before startup.
-// 	mlx_set_setting(MLX_MAXIMIZED, true);
-// 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
-// 	if (!mlx)
-// 		ft_error();
-
-// 	/* Do stuff */
-
-// 	// Create and display the image.
-// 	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
-// 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-// 		ft_error();
-
-// 	// Even after the image is being displayed, we can still modify the buffer.
-// 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
-
-// 	// Register a hook and pass mlx as an optional param.
-// 	// NOTE: Do this before calling mlx_loop!
-// 	mlx_loop_hook(mlx, ft_hook, mlx);
-// 	mlx_loop(mlx);
-// 	mlx_terminate(mlx);
-// 	return (EXIT_SUCCESS);
-// }
-
