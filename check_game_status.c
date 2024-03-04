@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/03/01 09:23:07 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/04 14:17:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	error_message(char *message)
 void	print_moves_screen(t_game *game)
 {
 	char *string;
-	
+
 	string = ft_itoa(game->steps);
 	mlx_delete_image(game->mlx, game->img->moves_nbr);
 	game->img->moves_nbr = mlx_put_string(game->mlx, string, 80, game->height * 32 - 22);
@@ -45,5 +45,4 @@ void check_game_status(t_game *game)
 		ft_printf("Congrats! You made it!\nThank you for playing!");
 		mlx_close_window(game->mlx);
 	}
-	
 }

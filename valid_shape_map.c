@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/03/01 16:01:32 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/04 14:49:33 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int is_rectangle(char **map_array)
 {
 	int i;
 	size_t first_str;
-	
+
 	i = 1;
 	first_str = ft_strlen(map_array[0]);
 	while (map_array[i] != '\0')
@@ -42,7 +42,7 @@ int only_char(char *str, char c)
 	return (1);
 }
 
- /* what if the map is like this? is it considered as closed or surrounded by wall?: 
+ /* what if the map is like this? is it considered as closed/surrounded by wall? 
   1111111111
   1E0000C001
   10000C0P11
@@ -58,7 +58,7 @@ static int check_wall_rows(char **map_array) //横にチェック
 	last_row = row_count(map_array);
 	if (!(only_char(map_array[0], '1')))
 		return (0);
-	if (!(only_char(map_array[last_row], '1')))
+	if (!(only_char(map_array[last_row - 1], '1')))
 		return (0);
 	return (1);
 }

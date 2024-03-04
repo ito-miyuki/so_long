@@ -1,4 +1,4 @@
-#ifndef SO_LONG_H
+#ifndef	SO_LONG_H
 # define SO_LONG_H
 
 # include <unistd.h>
@@ -9,7 +9,7 @@
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 
-#define WIDTH 256
+#define	WIDTH 256
 #define HEIGHT 256
 
 # define PIXELS 32
@@ -87,4 +87,6 @@ void	print_moves_screen(t_game *game);
 void	error_message(char *message);
 
 int		row_count(char **map_array);
+
+int only_char(char *str, char c);
 #endif

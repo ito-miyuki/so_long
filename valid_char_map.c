@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/03/01 09:26:04 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/04 10:32:01 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static int	is_valid_char(char *map_str)
 	return (1); // if it's true = there is no invalid char
 }
 
-static int contain_item(char *map_str, char c)
+static int	contain_item(char *map_str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -63,7 +63,6 @@ static int contain_item(char *map_str, char c)
 	else //there is at least one item
 		return (1);
 }
-
 
 void	valid_char_map(char *map_str)
 {
