@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:16:55 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 14:25:41 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/05 13:57:15 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char *read_map(char *map) // here it recieves argv[1]
 	{
 		temp = line_joint;
 		line_joint = ft_strjoin(line_joint, line);
+		if (!line_joint)
+			return  (NULL);
 		free (temp);
 		free (line);
 	}

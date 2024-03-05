@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 16:37:42 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/05 13:55:52 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ static void	check_empty_line(char *map_str)
 			error_message("there are empty lines in the map"); // potential memory leaks
 		i++;
 	}
-	printf("NO empty line in check_empty_line func");
 }
 
-int	is_ber(char *file_name)
+void	is_ber(char *file_name)
 {
 	int		len;
 	char	*format;
@@ -44,10 +43,8 @@ int	is_ber(char *file_name)
 	format = ".ber";
 	//if (len > 4) // これいるか？
 	len = ft_strlen(file_name) - 4;
-	if (ft_strncmp(&file_name[len], format, 4) == 0)
-		return (1); // yes, it's .ber
-	else
-		return (0); // no, file name is not .ber 
+	if (ft_strncmp(&file_name[len], format, 4) != 0) // strncmp returns 0 when they're identical
+		error_message("map file has to be .ber");
 }
 
 t_game	*init_map_data(char *argv)
@@ -58,7 +55,6 @@ t_game	*init_map_data(char *argv)
 
 	map_str = read_map(argv);
 	if (map_str == NULL)
-		// should I free map_str here?
 		error_message("File could not be read or does not exist.\n");
 	map_array = ft_split(map_str, '\n');
 	valid_char_map(map_str);

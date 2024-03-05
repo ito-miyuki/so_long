@@ -13,6 +13,7 @@ SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c init_map_data.c init
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
+# CC = gcc -g -fsanitize=address -fno-omit-frame-pointer
 
 ##MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 

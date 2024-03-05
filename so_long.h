@@ -49,7 +49,7 @@ t_game 	*init_map_data(char *argv);
 char	*read_map(char *map);
 void	valid_char_map(char *map_str);
 void	valid_shape_map(char **map_array);
-int		is_ber(char *file_name);
+void		is_ber(char *file_name);
 int 	check_path(t_game *temp, size_t y, size_t x);
 void	ft_flood_fill(t_game *game);
 void	free_grid(char **grid, size_t height);
@@ -88,5 +88,5 @@ void	error_message(char *message);
 
 int		row_count(char **map_array);
 
-int only_char(char *str, char c);
+int		only_char(char *str, char c);
 #endif

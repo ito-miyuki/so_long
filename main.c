@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 15:23:51 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/05 14:09:56 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_message("invalid input. We can read only one map at a time");
-	if (!(is_ber(argv[1])))
-		error_message("map file has to be .ber");
+	is_ber(argv[1]);
 	game = init_map_data(argv[1]); // in it map data and map validation
 	game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false); // Initialize mlx: should this be true or false
 	if (!game->mlx)
@@ -34,6 +33,10 @@ int	main(int argc, char **argv)
 	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ", 8, game->height * 32 - 22); // for prints Moves:
 	mlx_key_hook(game->mlx, moves_keyhook, game);
 	mlx_loop(game->mlx);
+	free_grid(game->grid, game->height);
+	free(game->grid);
+	free(images);
+	free(game);
 	mlx_terminate(game->mlx);
 	return (0);
 }

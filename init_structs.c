@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/02/28 12:59:36 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/05 11:34:21 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ t_game *init_game_struct(char **map_array)
 		// free?
 		return (0);
 	}
-	game->grid = map_array;
+	game->grid = map_array; // t_game構造体はマップのデータをmap_arrayを通じて参照する
 	game->width = ft_strlen(map_array[0]);
 	game->height = row_count(map_array);
+	game->item = count_items(game);
 	game->player_x = get_position(game, 'P', 'x');
 	game->player_y = get_position(game, 'P', 'y');
 	game->exit_x = get_position(game, 'E', 'x');
 	game->exit_y = get_position(game, 'E', 'y');
-	game->item = count_items(game);
+	
+	//free_grid(map_array, game->height); // t_game構造体はマップのデータをmap_arrayを通じて参照するからここで解放するとデータを失う
 	return (game);
 }

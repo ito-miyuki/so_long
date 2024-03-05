@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 09:46:20 by mito              #+#    #+#             */
-/*   Updated: 2024/02/21 13:38:35 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/05 10:11:57 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ void fill_background(t_game *data)
 		{
 			//mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS);
 			if (mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS) < 0)
-			{
-				printf("Fill background failed\n"); // modify it to subeject accordingly
-				return ;
-			}
+				error_message("Fill background failed\n"); // mis it correct?
 			x++;
 		}
 		y++;

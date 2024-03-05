@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/02/29 11:42:13 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/04 17:17:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void moves_keyhook(mlx_key_data_t keydata, void *data)
 	t_game *game;
 	game = (t_game *)data;
 	// If we PRESS the 'W' key, it moves to "UP"
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 		move_up(game);
 	// If we RELEASE the 'A' key, it moves to "LEFT".
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
