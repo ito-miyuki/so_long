@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 14:24:51 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 13:15:48 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_grid(char **grid, size_t height)
 		free(grid[i]);
 		i++;
 	}
+	free(grid);
 }
 
 int	check_path(t_game *temp, size_t y, size_t x)
@@ -47,24 +48,21 @@ int	check_path(t_game *temp, size_t y, size_t x)
 	return (0);
 }
 
-void	ft_flood_fill(t_game *game) // ここで全部コピーする
+void	ft_flood_fill(t_game *game)
 {
 	t_game	temp;
 	size_t	i;
 
 	i = 0;
-	temp.height = game->height; // temp->height じゃないのは、tempはポインタじゃないから
+	temp.height = game->height;
 	temp.width = game->width;
 	temp.item = game->item;
 	temp.player_x = game->player_x;
 	temp.player_y = game->player_y;
-	temp.exit_x = 0; // 出口に到達したか確認するのに、一度リセットしたいから
+	temp.exit_x = 0;
 	temp.grid = malloc(sizeof(char *) * temp.height);
 	if (!temp.grid)
-	{
-		free_grid(temp.grid, temp.height); // do I need this?
-		error_message("temp.grid malloc fail\n");
-	}
+		error_message("memory allocation at floof fill failed\n");
 	while (i < temp.height)
 	{
 		temp.grid[i] = ft_strdup(game->grid[i]);
@@ -73,8 +71,8 @@ void	ft_flood_fill(t_game *game) // ここで全部コピーする
 	check_path(&temp, temp.player_x, temp.player_y);
 	if (!(temp.exit_x == 1 && temp.item == 0))
 	{
-		free_grid(temp.grid, temp.height); // do I need this?
-		error_message("didn't pass Flood fill map validation"); // replace with nicer message
+		free_grid(temp.grid, temp.height); //必要ないかも
+		error_message("Map didn't pass Flood fill validation");
 	}
 	free_grid(temp.grid, temp.height);
 }

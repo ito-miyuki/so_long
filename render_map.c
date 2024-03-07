@@ -6,41 +6,36 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 09:46:20 by mito              #+#    #+#             */
-/*   Updated: 2024/03/05 10:11:57 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 12:31:47 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-void image_select(t_game *data, size_t y, size_t x)
+void	image_select(t_game *data, size_t y, size_t x)
 {
-    size_t img_size;
-	
-    img_size = 32;
-    if (data->grid[y][x] == 'P')
-    {
-        if (mlx_image_to_window(data->mlx, data->img->player, x * PIXELS, y * PIXELS) < 0)
-            return ; // please modifiy it!
-    }
+	size_t	img_size;
+
+	img_size = 32;
+	if (data->grid[y][x] == 'P')
+		if (mlx_image_to_window(data->mlx, data->img->player,
+				x * PIXELS, y * PIXELS) < 0)
+			error_message("Failed to put image to window");
 	if (data->grid[y][x] == '1')
-    {
-        if (mlx_image_to_window(data->mlx, data->img->grass, x * PIXELS, y * PIXELS) < 0)
-            return ; // please modifiy it!
-    }
+		if (mlx_image_to_window(data->mlx, data->img->grass,
+				x * PIXELS, y * PIXELS) < 0)
+			error_message("Failed to put image to window");
 	if (data->grid[y][x] == 'C')
-    {
-        if (mlx_image_to_window(data->mlx, data->img->item, x * PIXELS, y * PIXELS) < 0)
-            return ; // please modifiy it!
-    }
+		if (mlx_image_to_window(data->mlx, data->img->item,
+				x * PIXELS, y * PIXELS) < 0)
+			error_message("Failed to put image to window");
 	if (data->grid[y][x] == 'E')
-    {
-        if (mlx_image_to_window(data->mlx, data->img->exit, x * PIXELS, y * PIXELS) < 0)
-            return ; // please modifiy it!
-    }
+		if (mlx_image_to_window(data->mlx, data->img->exit,
+				x * PIXELS, y * PIXELS) < 0)
+			error_message ("Failed to put image to window");
 }
 
-void render_map(t_game *data)
+void	render_map(t_game *data)
 {
 	size_t	x;
 	size_t	y;
@@ -49,7 +44,6 @@ void render_map(t_game *data)
 	y = 0;
 	while (y < data->height)
 	{
-		
 		x = 0;
 		while (x < data->width)
 		{
@@ -60,7 +54,7 @@ void render_map(t_game *data)
 	}
 }
 
-void fill_background(t_game *data)
+void	fill_background(t_game *data)
 {
 	size_t	x;
 	size_t	y;
@@ -72,8 +66,8 @@ void fill_background(t_game *data)
 		x = 0;
 		while (x < data->width)
 		{
-			//mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS);
-			if (mlx_image_to_window(data->mlx, data->img->floor, x * PIXELS, y * PIXELS) < 0)
+			if (mlx_image_to_window(data->mlx, data->img->floor,
+					x * PIXELS, y * PIXELS) < 0)
 				error_message("Fill background failed\n"); // mis it correct?
 			x++;
 		}

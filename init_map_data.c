@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/05 13:55:52 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 14:31:46 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	is_ber(char *file_name)
 
 	len = ft_strlen(file_name);
 	format = ".ber";
-	//if (len > 4) // これいるか？
+	if (len < 4)
+		error_message("map file has to be ***.ber");
 	len = ft_strlen(file_name) - 4;
-	if (ft_strncmp(&file_name[len], format, 4) != 0) // strncmp returns 0 when they're identical
-		error_message("map file has to be .ber");
+	if (ft_strncmp(&file_name[len], format, 4) != 0)
+		error_message("map file has to be ***.ber");
 }
 
 t_game	*init_map_data(char *argv)

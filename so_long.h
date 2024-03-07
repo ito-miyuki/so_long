@@ -4,7 +4,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
+# include <stdio.h> //do I need this?
 
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
