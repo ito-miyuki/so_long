@@ -89,4 +89,7 @@ void	error_message(char *message);
 int		row_count(char **map_array);
 
 int		only_char(char *str, char c);
+
+int		is_wall(char **map_array);
+
 #endif

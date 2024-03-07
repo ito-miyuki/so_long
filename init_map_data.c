@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 14:31:46 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 15:29:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ static void	check_empty_map(char *map_str)
 static void	check_empty_line(char *map_str)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (map_str[i])
 	{
-		if (map_str[0] == '\n' || (map_str[i] == '\n' && map_str[i + 1] == '\n'))
-			error_message("there are empty lines in the map"); // potential memory leaks
+		if (map_str[0] == '\n'
+			|| (map_str[i] == '\n' && map_str[i + 1] == '\n'))
+			error_message("there are empty lines in the map");
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 13:15:48 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 14:56:31 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	check_path(t_game *temp, size_t y, size_t x)
 		return (0);
 	}
 	temp->grid[y][x] = '1';
-	if (check_path(temp, y + 1, x)) // if (check_path(temp, y + 1, x) == 1) と同じ意味
+	if (check_path(temp, y + 1, x))
 		return (1);
-	if (check_path(temp, y - 1, x)) // UP
+	if (check_path(temp, y - 1, x))
 		return (1);
-	if (check_path(temp, y, x + 1)) // right
+	if (check_path(temp, y, x + 1))
 		return (1);
-	if (check_path(temp, y, x - 1)) // left
+	if (check_path(temp, y, x - 1))
 		return (1);
 	return (0);
 }
@@ -68,7 +68,7 @@ void	ft_flood_fill(t_game *game)
 		temp.grid[i] = ft_strdup(game->grid[i]);
 		i++;
 	}
-	check_path(&temp, temp.player_x, temp.player_y);
+	check_path(&temp, temp.player_y, temp.player_x);
 	if (!(temp.exit_x == 1 && temp.item == 0))
 	{
 		free_grid(temp.grid, temp.height); //必要ないかも

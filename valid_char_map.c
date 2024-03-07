@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/03/04 10:32:01 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 18:21:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	check_e_and_p(char *map_str, char c)
 		i++;
 	}
 	if (count == 1)
-		return (1); // there is only one Exit/Starting point
-	return (0); // thi is invalid case. there is more than one Exit and Starting point or there us none
+		return (1);
+	return (0);
 }
 
 static int	is_valid_char(char *map_str)
@@ -37,12 +37,12 @@ static int	is_valid_char(char *map_str)
 	i = 0;
 	while (map_str[i] != '\0')
 	{
-		if (map_str[i] != 'E' && map_str[i] != 'P' && map_str[i] != 'C' 
+		if (map_str[i] != 'E' && map_str[i] != 'P' && map_str[i] != 'C'
 			&& map_str[i] != '1' && map_str[i] != '0' && map_str[i] != '\n')
-			return (0); // if it's false = it contains invalid char
+			return (0);
 		i++;
 	}
-	return (1); // if it's true = there is no invalid char
+	return (1);
 }
 
 static int	contain_item(char *map_str, char c)
@@ -54,13 +54,13 @@ static int	contain_item(char *map_str, char c)
 	count = 0;
 	while (map_str[i] != '\0')
 	{
-		if (map_str[i] == c) // if it's true = nesessary char found
+		if (map_str[i] == c)
 			count++;
 		i++;
 	}
-	if (count == 0) // no item
+	if (count == 0)
 		return (0);
-	else //there is at least one item
+	else
 		return (1);
 }
 

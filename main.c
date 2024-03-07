@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 13:26:31 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/07 17:25:52 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_message("invalid input. We can read only one map at a time");
 	is_ber(argv[1]);
-	game = init_map_data(argv[1]); // in it map data and map validation
-	game->mlx = mlx_init(game->width * PIXELS, game->height * PIXELS, "so_long", false);
+	game = init_map_data(argv[1]);
+	game->mlx = mlx_init(game->width * PIXELS,
+			game->height * PIXELS, "so_long", false);
 	if (!game->mlx)
 		return (EXIT_FAILURE); // should I use error message func here?
 	images = init_img_struct(game->mlx);
 	game->img = images;
 	fill_background(game);
 	render_map(game);
-	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ", 8, game->height * 32 - 22);
+	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ",
+			8, game->height * 32 - 22);
 	mlx_key_hook(game->mlx, moves_keyhook, game);
 	mlx_loop(game->mlx);
 	free(images);

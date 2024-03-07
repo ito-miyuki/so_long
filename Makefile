@@ -8,7 +8,7 @@ MLX42 = ./MLX42/build/libmlx42.a
 
 SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c init_map_data.c init_structs.c \
 		load_images.c render_map.c moves.c get_position.c valid_path_map.c remove_item.c \
-		check_game_status.c
+		check_game_status.c check_wall_map.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -26,22 +26,27 @@ AR = ar rcs
 
 RM = rm -f
 
-all: $(NAME)
+all: makelibft $(NAME)
 
 LDFLAGS = -L$(MLX_DIR)/build -L/Users/$(USER)/.brew/opt/glfw/lib
 
 LIBS = -lmlx42 -ldl -lglfw -pthread -lm
 
 $(NAME): $(LIBFT) $(MLX42) $(OBJS)
+	@echo "-- compile name --"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+# compile libft
+makelibft:
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX42):
+	@echo "--external lib--"
 	$(MAKE) -C $(MLX_DIR)
 
+# Make object files for so_long
 %.o: %.c
+	@echo "--object--"
 	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
@@ -55,5 +60,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re makelibft
 
