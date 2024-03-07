@@ -41,12 +41,10 @@ makelibft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX42):
-	@echo "--external lib--"
 	$(MAKE) -C $(MLX_DIR)
 
 # Make object files for so_long
 %.o: %.c
-	@echo "--object--"
 	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
