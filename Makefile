@@ -33,7 +33,6 @@ LDFLAGS = -L$(MLX_DIR)/build -L/Users/$(USER)/.brew/opt/glfw/lib
 LIBS = -lmlx42 -ldl -lglfw -pthread -lm
 
 $(NAME): $(LIBFT) $(MLX42) $(OBJS)
-	@echo "-- compile name --"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
 
 # compile libft
@@ -41,7 +40,7 @@ makelibft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX42):
-	$(MAKE) -C $(MLX_DIR)
+	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4	
 
 # Make object files for so_long
 %.o: %.c
@@ -50,6 +49,7 @@ $(MLX42):
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
+	rm -rf MLX42/build
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 13:37:43 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/08 14:16:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_game	*move_up(t_game *game)
 		print_moves_terminal(game);
 		print_moves_screen(game);
 	}
-	else if (game->grid[game->player_y - 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
+	else if (game->grid[game->player_y - 1][game->player_x] == 'E')
 		check_game_status(game);
 	return (game);
 }
@@ -51,7 +51,7 @@ t_game	*move_down(t_game *game)
 		print_moves_terminal(game);
 		print_moves_screen(game);
 	}
-	else if (game->grid[game->player_y + 1][game->player_x] == 'E') //it's temporaly. should implement a better solution
+	else if (game->grid[game->player_y + 1][game->player_x] == 'E')
 		check_game_status(game);
 	return (game);
 }
@@ -73,7 +73,7 @@ t_game	*move_right(t_game *game)
 		print_moves_terminal(game);
 		print_moves_screen(game);
 	}
-	else if (game->grid[game->player_y][game->player_x + 1] == 'E') // it's temporaly. should implement a better solution
+	else if (game->grid[game->player_y][game->player_x + 1] == 'E')
 		check_game_status(game);
 	return (game);
 }
@@ -95,7 +95,7 @@ t_game	*move_left(t_game *game)
 		print_moves_terminal(game);
 		print_moves_screen(game);
 	}
-	else if (game->grid[game->player_y][game->player_x - 1] == 'E') // it's temporaly. should implement a better solution
+	else if (game->grid[game->player_y][game->player_x - 1] == 'E')
 		check_game_status(game);
 	return (game);
 }
@@ -107,7 +107,7 @@ void	moves_keyhook(mlx_key_data_t keydata, void *data)
 	game = (t_game *)data;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE) //pressでもいい？
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 		move_up(game);
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
 		move_left(game);

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 17:25:52 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/08 14:13:53 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	main(int argc, char **argv)
 	fill_background(game);
 	render_map(game);
 	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ",
-			8, game->height * 32 - 22);
+			8, game->height * PIXELS - 22);
 	mlx_key_hook(game->mlx, moves_keyhook, game);
 	mlx_loop(game->mlx);
 	free(images);
-	free_grid(game->grid, game->height);
+	free_grid(game->grid);
 	free(game);
 	mlx_terminate(game->mlx);
 	return (EXIT_SUCCESS);

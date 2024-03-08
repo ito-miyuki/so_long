@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 15:29:13 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/08 17:01:12 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,28 @@ void	is_ber(char *file_name)
 	len = ft_strlen(file_name);
 	format = ".ber";
 	if (len < 4)
-		error_message("map file has to be ***.ber");
+		error_message("map file has to be ***.ber"); // think about better message
+	if (len == 4)
+		error_message("map file is hidden file(1)"); // think about better message
 	len = ft_strlen(file_name) - 4;
+	if (file_name[len - 1] == '/')
+		error_message("map file is hidden file(2)"); // think about better message
 	if (ft_strncmp(&file_name[len], format, 4) != 0)
 		error_message("map file has to be ***.ber");
 }
 
+static bool	is_map_too_big(char **map_array)
+{
+	int row;
+	int col;
+
+	row = row_count(map_array);
+	col = ft_strlen(map_array[0]);
+
+	if (col * PIXELS > 2500 || row * PIXELS > 1700)
+		return (true);
+	return (false);
+}
 t_game	*init_map_data(char *argv)
 {
 	char	*map_str;
@@ -57,12 +73,17 @@ t_game	*init_map_data(char *argv)
 
 	map_str = read_map(argv);
 	if (map_str == NULL)
-		error_message("File could not be read or does not exist.\n");
+		exit(EXIT_FAILURE);
 	map_array = ft_split(map_str, '\n');
-	valid_char_map(map_str);
 	check_empty_map(map_str);
+	valid_char_map(map_str);
 	check_empty_line(map_str);
 	valid_shape_map(map_array);
+	if (is_map_too_big(map_array) == true)
+	{
+		free_grid(map_array);
+		error_message("Map is too big.");
+	}
 	data = init_game_struct(map_array);
 	ft_flood_fill(data);
 	free(map_str);

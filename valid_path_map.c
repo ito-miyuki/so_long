@@ -6,18 +6,18 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 14:56:31 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/08 14:10:36 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_grid(char **grid, size_t height)
+void	free_grid(char **grid)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < height)
+	while (grid[i] != NULL)
 	{
 		free(grid[i]);
 		i++;
@@ -60,7 +60,7 @@ void	ft_flood_fill(t_game *game)
 	temp.player_x = game->player_x;
 	temp.player_y = game->player_y;
 	temp.exit_x = 0;
-	temp.grid = malloc(sizeof(char *) * temp.height);
+	temp.grid = ft_calloc(temp.height + 1, sizeof(char *));
 	if (!temp.grid)
 		error_message("memory allocation at floof fill failed\n");
 	while (i < temp.height)
@@ -71,8 +71,8 @@ void	ft_flood_fill(t_game *game)
 	check_path(&temp, temp.player_y, temp.player_x);
 	if (!(temp.exit_x == 1 && temp.item == 0))
 	{
-		free_grid(temp.grid, temp.height); //必要ないかも
+		free_grid(temp.grid);
 		error_message("Map didn't pass Flood fill validation");
 	}
-	free_grid(temp.grid, temp.height);
+	free_grid(temp.grid);
 }
