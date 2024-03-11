@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:54:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 16:47:09 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 18:25:46 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,7 @@ void	moves_keyhook(mlx_key_data_t keydata, void *data)
 
 	game = (t_game *)data;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
-		free(data); // shoud I
-		mlx_close_window(game->mlx);
-	}
+		clean_up(game, NULL);
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 		move_up(game);
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)

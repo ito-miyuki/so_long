@@ -8,7 +8,7 @@ MLX42 = ./MLX42/build/libmlx42.a
 
 SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c init_map_data.c init_structs.c \
 		load_images.c render_map.c moves.c get_position.c valid_path_map.c remove_item.c \
-		check_game_status.c check_wall_map.c
+		check_game_status.c check_wall_map.c clean_up.c close_hook.c
 
 OBJS = $(SRCS:.c=.o)
 

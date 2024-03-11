@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 09:46:20 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 12:31:47 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 18:25:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	image_select(t_game *data, size_t y, size_t x)
 	if (data->grid[y][x] == 'P')
 		if (mlx_image_to_window(data->mlx, data->img->player,
 				x * PIXELS, y * PIXELS) < 0)
-			error_message("Failed to put image to window");
+			clean_up(data, "Failed to put image to window");
 	if (data->grid[y][x] == '1')
 		if (mlx_image_to_window(data->mlx, data->img->grass,
 				x * PIXELS, y * PIXELS) < 0)
-			error_message("Failed to put image to window");
+			clean_up(data, "Failed to put image to window");
 	if (data->grid[y][x] == 'C')
 		if (mlx_image_to_window(data->mlx, data->img->item,
 				x * PIXELS, y * PIXELS) < 0)
-			error_message("Failed to put image to window");
+			clean_up(data, "Failed to put image to window");
 	if (data->grid[y][x] == 'E')
 		if (mlx_image_to_window(data->mlx, data->img->exit,
 				x * PIXELS, y * PIXELS) < 0)
-			error_message ("Failed to put image to window");
+			clean_up(data, "Failed to put image to window");
 }
 
 void	render_map(t_game *data)

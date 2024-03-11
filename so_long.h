@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 09:41:39 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 17:04:54 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 18:32:22 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	fill_background(t_game *data);
 
 // moves
 void	moves_keyhook(mlx_key_data_t keydata, void *data);
+void	close_hook(void *param);
 t_game	*move_up(t_game *game);
 t_game	*move_down(t_game *game);
 t_game	*move_right(t_game *game);
@@ -109,5 +110,7 @@ void	check_game_status(t_game *game);
 
 // check wall map
 int		is_wall(char **map_array);
+
+void	clean_up(t_game *game, char *message);
 
 #endif

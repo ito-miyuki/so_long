@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 16:07:11 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 18:42:21 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int	main(int argc, char **argv)
 {
 	t_game	*game;
-	t_img	*images;
 
 	if (argc != 2)
 		error_message("invalid input. We can read only one map at a time");
@@ -27,16 +26,14 @@ int	main(int argc, char **argv)
 			game->height * PIXELS, "so_long", false);
 	if (!game->mlx)
 		return (EXIT_FAILURE);
-	images = init_img_struct(game->mlx);
-	game->img = images;
+	game->img = init_img_struct(game->mlx);
 	fill_background(game);
 	render_map(game);
 	game->img->moves_print = mlx_put_string(game->mlx, "MOVES: ",
 			8, game->height * PIXELS - 22);
 	mlx_key_hook(game->mlx, moves_keyhook, game);
+	mlx_close_hook(game->mlx, close_hook, game);
 	mlx_loop(game->mlx);
-	free(images);
-	free_grid(game->grid);
 	free(game);
 	mlx_terminate(game->mlx);
 	return (EXIT_SUCCESS);
