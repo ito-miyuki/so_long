@@ -6,12 +6,11 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 13:16:55 by mito              #+#    #+#             */
-/*   Updated: 2024/03/08 17:03:35 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 14:52:54 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <errno.h>
 
 static char	*read_map_from_file(int fd)
 {
@@ -46,9 +45,9 @@ char	*read_map(char *map)
 	fd = open(map, O_RDONLY);
 
 	if (fd == -1)
-		error_message("read failed");	
+		error_message("read failed");
 	map_string = read_map_from_file(fd);
-	if (errno && errno == 21) // error no 21 means it's a folder
+	if (errno && errno == 21)
 	{
 		close(fd);
 		perror("Error\n");

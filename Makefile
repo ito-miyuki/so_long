@@ -13,14 +13,13 @@ SRCS =	read_map.c main.c valid_char_map.c valid_shape_map.c init_map_data.c init
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-# CC = gcc -g -fsanitize=address -fno-omit-frame-pointer
 
 ##MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 HEADERS	= -I ./include -I $(MLX_DIR)/include
+#HEADERS	= -I $(MLX_DIR)/include/MLX42
 
-CFLAGS = -Wall -Wextra -Werror -I./libft -g
-#-g is for debugging, remove it before submitting
+CFLAGS = -Wall -Wextra -Werror -I./libft
 
 AR = ar rcs
 

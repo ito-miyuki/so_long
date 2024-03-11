@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 15:10:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 16:17:48 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,18 @@ int	only_char(char *str, char c)
 	return (1);
 }
 
- /* what if the map is like this? is it considered as closed/surrounded by wall? 
-  1111111111
-  1E0000C001
-  10000C0P11
-  1111111110
- */
-
-void	valid_shape_map(char **map_array)
+void	valid_shape_map(char *map_str, char **map_array)
 {
 	if (!(is_rectangle(map_array)))
-		error_message("map is not a rectangle");
+	{
+		free(map_str);
+		free_grid(map_array);
+		error_message("Map is not a rectangle");
+	}
 	if (!(is_wall(map_array)))
-		error_message("map is not surrounded by wall");
+	{
+		free(map_str);
+		free_grid(map_array);
+		error_message("Map is not surrounded by wall");
+	}
 }

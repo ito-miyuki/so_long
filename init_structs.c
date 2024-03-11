@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 12:42:32 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 16:44:31 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,20 @@ t_game	*init_game_struct(char **map_array)
 {
 	t_game	*game;
 
-	game = (t_game *)ft_calloc(1, sizeof(t_game)); // why do I need to type cast here?
+	game = (t_game *)ft_calloc(1, sizeof(t_game));
 	if (!game)
+	{
+		free(map_array); //should I free here
 		error_message("calloc failed at init game struct func\n");
+	}
 	game->grid = map_array;
 	game->width = ft_strlen(map_array[0]);
 	game->height = row_count(map_array);
 	game->item = count_items(game);
 	game->player_x = get_position(game, 'P', 'x');
 	game->player_y = get_position(game, 'P', 'y');
-	game->exit_x = get_position(game, 'E', 'x'); //必要？
-	game->exit_y = get_position(game, 'E', 'y'); //必要？
+	game->exit_x = get_position(game, 'E', 'x');
+	game->exit_y = get_position(game, 'E', 'y');
 	game->steps = 0;
 	return (game);
 }

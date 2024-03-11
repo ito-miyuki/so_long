@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:14:54 by mito              #+#    #+#             */
-/*   Updated: 2024/03/08 14:13:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 16:07:11 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	game->mlx = mlx_init(game->width * PIXELS,
 			game->height * PIXELS, "so_long", false);
 	if (!game->mlx)
-		return (EXIT_FAILURE); // should I use error message func here?
+		return (EXIT_FAILURE);
 	images = init_img_struct(game->mlx);
 	game->img = images;
 	fill_background(game);

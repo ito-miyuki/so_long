@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:15:14 by mito              #+#    #+#             */
-/*   Updated: 2024/03/07 18:21:30 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 15:59:11 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,30 @@ static int	contain_item(char *map_str, char c)
 		return (1);
 }
 
-void	valid_char_map(char *map_str)
+void	valid_char_map(char *map_str, char **map_array)
 {
 	if (!(check_e_and_p(map_str, 'E')))
+	{
+		free(map_str);
+		free_grid(map_array);
 		error_message("a number of E has to be 1");
+	}
 	if (!(check_e_and_p(map_str, 'P')))
+	{
+		free(map_str);
+		free_grid(map_array);
 		error_message("a number of P has to be 1");
+	}
 	if (!(contain_item(map_str, 'C')))
+	{
+		free(map_str);
+		free_grid(map_array);
 		error_message("Your map doesn't have any items");
+	}
 	if (!(is_valid_char(map_str)))
+	{
+		free(map_str);
+		free_grid(map_array);
 		error_message("Your map contains invalid chars");
+	}
 }

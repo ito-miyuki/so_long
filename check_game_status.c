@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/03/08 13:03:27 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 16:43:47 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	check_game_status(t_game *game)
 {
 	if (game->collected == game->item)
 	{
+		game->steps += 1;
+		print_moves_terminal(game);
+		print_moves_screen(game);
 		ft_printf("Congrats! You made it!\nThank you for playing!(^_^)/\n");
 		mlx_close_window(game->mlx);
 	}

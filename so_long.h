@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 09:41:39 by mito              #+#    #+#             */
-/*   Updated: 2024/03/08 17:04:49 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/11 17:04:54 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h> //do I need this?
+# include <stdio.h>
+# include <errno.h>
 
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
@@ -36,7 +37,6 @@ typedef struct s_img
 
 typedef struct s_game
 {
-	//void 	*mlx;
 	char			**grid;
 	size_t			width;
 	size_t			height;
@@ -48,18 +48,17 @@ typedef struct s_game
 	size_t			exit_y;
 	size_t			steps;
 	t_img			*img;
-	mlx_t			*mlx; // これは何のため？
-	mlx_texture_t	*player_up;
+	mlx_t			*mlx;
 }				t_game;
 
 // read map
 char	*read_map(char *map);
 
 // valid char map
-void	valid_char_map(char *map_str);
+void	valid_char_map(char *map_str, char **map_array);
 
 //valid shape map
-void	valid_shape_map(char **map_array);
+void	valid_shape_map(char *map_str, char **map_array);
 int		only_char(char *str, char c);
 
 //init map data
