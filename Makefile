@@ -14,12 +14,10 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-##MLX42FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
-
 HEADERS	= -I ./include -I $(MLX_DIR)/include
 #HEADERS	= -I $(MLX_DIR)/include/MLX42
 
-CFLAGS = -Wall -Wextra -Werror -I./libft
+CFLAGS = -g -Wall -Wextra -Werror -I./libft
 
 AR = ar rcs
 
@@ -34,14 +32,12 @@ LIBS = -lmlx42 -ldl -lglfw -pthread -lm
 $(NAME): $(LIBFT) $(MLX42) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
 
-# compile libft
 makelibft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX42):
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4	
 
-# Make object files for so_long
 %.o: %.c
 	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 

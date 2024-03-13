@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:14:40 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 16:17:48 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/13 10:39:29 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,26 @@ int	only_char(char *str, char c)
 	return (1);
 }
 
+static bool	is_map_too_big(char **map_array)
+{
+	int	row;
+	int	col;
+
+	row = row_count(map_array);
+	col = ft_strlen(map_array[0]);
+	if (col * PIXELS > 2500 || row * PIXELS > 1700)
+		return (true);
+	return (false);
+}
+
 void	valid_shape_map(char *map_str, char **map_array)
 {
+	if (is_map_too_big(map_array) == true)
+	{
+		free(map_str);
+		free_grid(map_array);
+		error_message("Map is too big.");
+	}
 	if (!(is_rectangle(map_array)))
 	{
 		free(map_str);

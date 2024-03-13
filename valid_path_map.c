@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:26:11 by mito              #+#    #+#             */
-/*   Updated: 2024/03/08 14:10:36 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/13 11:46:17 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_grid(char **grid)
 	size_t	i;
 
 	i = 0;
+	if (grid == NULL)
+		return ;
 	while (grid[i] != NULL)
 	{
 		free(grid[i]);
@@ -48,7 +50,7 @@ int	check_path(t_game *temp, size_t y, size_t x)
 	return (0);
 }
 
-void	ft_flood_fill(t_game *game)
+bool	ft_flood_fill(t_game *game)
 {
 	t_game	temp;
 	size_t	i;
@@ -62,17 +64,17 @@ void	ft_flood_fill(t_game *game)
 	temp.exit_x = 0;
 	temp.grid = ft_calloc(temp.height + 1, sizeof(char *));
 	if (!temp.grid)
-		error_message("memory allocation at floof fill failed\n");
+		clean_up_exit(game, "memory allocation failed\n");
 	while (i < temp.height)
 	{
 		temp.grid[i] = ft_strdup(game->grid[i]);
+		if (!temp.grid[i])
+			clean_up_exit(game, "memory allocation failed\n");
 		i++;
 	}
 	check_path(&temp, temp.player_y, temp.player_x);
-	if (!(temp.exit_x == 1 && temp.item == 0))
-	{
-		free_grid(temp.grid);
-		error_message("Map didn't pass Flood fill validation");
-	}
 	free_grid(temp.grid);
+	if (!(temp.exit_x == 1 && temp.item == 0))
+		return (false);
+	return (true);
 }

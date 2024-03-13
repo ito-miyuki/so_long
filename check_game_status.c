@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 17:11:36 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/12 17:17:04 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	check_game_status(t_game *game)
 		print_moves_terminal(game);
 		print_moves_screen(game);
 		ft_printf("Congrats! You made it!\nThank you for playing!(^_^)/\n");
-		mlx_close_window(game->mlx);
+		clean_up(game, NULL);
 	}
 }

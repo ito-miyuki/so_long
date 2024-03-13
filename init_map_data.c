@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 16:26:05 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/13 11:24:18 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	check_empty_line(char *map_str, char **map_array)
 	{
 		if (map_str[0] == '\n'
 			|| (map_str[i] == '\n' && map_str[i + 1] == '\n'))
-			{
-				free(map_str);
-				free_grid(map_array);
-				error_message("There are empty lines in the map");
-			}
+		{
+			free(map_str);
+			free_grid(map_array);
+			error_message("There are empty lines in the map");
+		}
 		i++;
 	}
 }
@@ -61,18 +61,6 @@ void	is_ber(char *file_name)
 		error_message("Map file has to be ***.ber");
 }
 
-static bool	is_map_too_big(char **map_array)
-{
-	int	row;
-	int	col;
-
-	row = row_count(map_array);
-	col = ft_strlen(map_array[0]);
-	if (col * PIXELS > 2500 || row * PIXELS > 1700)
-		return (true);
-	return (false);
-}
-
 t_game	*init_map_data(char *argv)
 {
 	char	*map_str;
@@ -84,16 +72,15 @@ t_game	*init_map_data(char *argv)
 		exit(EXIT_FAILURE);
 	map_array = ft_split(map_str, '\n');
 	check_empty_map(map_str, map_array);
-	valid_char_map(map_str, map_array);
 	check_empty_line(map_str, map_array);
+	valid_char_map(map_str, map_array);
 	valid_shape_map(map_str, map_array);
-	if (is_map_too_big(map_array) == true)
+	data = init_game_struct(map_str, map_array);
+	if (ft_flood_fill(data) == false)
 	{
-		free_grid(map_array);
-		error_message("Map is too big.");
+		free(map_str);
+		clean_up_exit(data, "Invalid path");
 	}
-	data = init_game_struct(map_array);
-	ft_flood_fill(data);
 	free(map_str);
 	return (data);
 }

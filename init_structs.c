@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/03/11 16:44:31 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/13 11:18:15 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,15 @@ size_t	count_items(t_game *game)
 	return (count);
 }
 
-t_game	*init_game_struct(char **map_array)
+t_game	*init_game_struct(char *map_str, char **map_array)
 {
 	t_game	*game;
 
 	game = (t_game *)ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{
-		free(map_array); //should I free here
+		free(map_str); //should I free here
+		free_grid(map_array); //should I free here
 		error_message("calloc failed at init game struct func\n");
 	}
 	game->grid = map_array;
