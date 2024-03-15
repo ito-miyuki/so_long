@@ -6,14 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 09:41:39 by mito              #+#    #+#             */
-/*   Updated: 2024/03/13 11:47:59 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/14 11:34:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -67,18 +66,17 @@ bool	ft_flood_fill(t_game *game);
 
 size_t	get_position(t_game *game, char c, char xy);
 
-t_img	*init_img_struct(mlx_t *mlx);
+t_img	*init_img_struct(mlx_t *mlx, t_game *game);
 int		row_count(char **map_array);
 size_t	count_items(t_game *game);
 t_game	*init_game_struct(char *map_str, char **map_array);
 
-t_img	*load_floor_texture(mlx_t *mlx, t_img *img);
-t_img	*load_player_texture(mlx_t *mlx, t_img *img);
-t_img	*load_grass_texture(mlx_t *mlx, t_img *img);
-t_img	*load_item_texture(mlx_t *mlx, t_img *img);
-t_img	*load_exit_texture(mlx_t *mlx, t_img *img);
+t_img	*load_floor_texture(mlx_t *mlx, t_img *img, t_game *game);
+t_img	*load_player_texture(mlx_t *mlx, t_img *img, t_game *game);
+t_img	*load_grass_texture(mlx_t *mlx, t_img *img, t_game *game);
+t_img	*load_item_texture(mlx_t *mlx, t_img *img, t_game *game);
+t_img	*load_exit_texture(mlx_t *mlx, t_img *img, t_game *game);
 
-// render map
 void	render_map(t_game *data);
 void	image_select(t_game *data, size_t y, size_t x);
 void	fill_background(t_game *data);

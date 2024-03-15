@@ -6,24 +6,24 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:47:15 by mito              #+#    #+#             */
-/*   Updated: 2024/03/13 11:18:15 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/14 10:57:04 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_img	*init_img_struct(mlx_t *mlx)
+t_img	*init_img_struct(mlx_t *mlx, t_game *game)
 {
 	t_img	*assets;
 
 	assets = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!assets)
 		return (NULL);
-	assets = load_floor_texture(mlx, assets);
-	assets = load_player_texture(mlx, assets);
-	assets = load_grass_texture(mlx, assets);
-	assets = load_item_texture(mlx, assets);
-	assets = load_exit_texture(mlx, assets);
+	assets = load_floor_texture(mlx, assets, game);
+	assets = load_player_texture(mlx, assets, game);
+	assets = load_grass_texture(mlx, assets, game);
+	assets = load_item_texture(mlx, assets, game);
+	assets = load_exit_texture(mlx, assets, game);
 	return (assets);
 }
 
@@ -67,9 +67,9 @@ t_game	*init_game_struct(char *map_str, char **map_array)
 	game = (t_game *)ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{
-		free(map_str); //should I free here
-		free_grid(map_array); //should I free here
-		error_message("calloc failed at init game struct func\n");
+		free(map_str);
+		free_grid(map_array);
+		error_message("calloc failed\n");
 	}
 	game->grid = map_array;
 	game->width = ft_strlen(map_array[0]);

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:44 by mito              #+#    #+#             */
-/*   Updated: 2024/03/13 11:24:18 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/15 10:30:51 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ t_game	*init_map_data(char *argv)
 	if (map_str == NULL)
 		exit(EXIT_FAILURE);
 	map_array = ft_split(map_str, '\n');
+	if (!map_array)
+	{
+		free(map_str);
+		error_message("malloc failed");
+	}
 	check_empty_map(map_str, map_array);
 	check_empty_line(map_str, map_array);
 	valid_char_map(map_str, map_array);

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:59 by mito              #+#    #+#             */
-/*   Updated: 2024/03/12 17:17:04 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/15 10:32:36 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	print_moves_screen(t_game *game)
 	char	*string;
 
 	string = ft_itoa(game->steps);
+	if (!string)
+		clean_up_exit(game, "malloc failed");
 	mlx_delete_image(game->mlx, game->img->moves_nbr);
 	game->img->moves_nbr = mlx_put_string(game->mlx, string,
 			80, game->height * 32 - 22);
@@ -35,6 +37,8 @@ void	print_moves_terminal(t_game *game)
 	char	*string;
 
 	string = ft_itoa(game->steps);
+	if (!string)
+		clean_up_exit(game, "malloc failed");
 	ft_printf("Moves: %s\n", string);
 	free (string);
 }

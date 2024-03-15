@@ -14,8 +14,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-HEADERS	= -I ./include -I $(MLX_DIR)/include
-#HEADERS	= -I $(MLX_DIR)/include/MLX42
+HEADERS	= -I $(MLX_DIR)/include/MLX42
 
 CFLAGS = -g -Wall -Wextra -Werror -I./libft
 
