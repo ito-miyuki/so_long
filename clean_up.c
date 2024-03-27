@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:12:12 by mito              #+#    #+#             */
-/*   Updated: 2024/03/15 16:47:00 by mito             ###   ########.fr       */
+/*   Updated: 2024/03/22 10:54:53 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	clean_up(t_game *game, char *message)
 		free_grid(game->grid);
 	if (game->img)
 		free(game->img);
-	if (game)
-		free(game);
 	if (message != NULL)
 	{
 		ft_putstr_fd("Error\n", 2);

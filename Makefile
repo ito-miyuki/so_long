@@ -16,9 +16,7 @@ CC = cc
 
 HEADERS	= -I $(MLX_DIR)/include/MLX42
 
-CFLAGS = -g -Wall -Wextra -Werror -I./libft
-
-AR = ar rcs
+CFLAGS = -Wall -Wextra -Werror -I./libft
 
 RM = rm -f
 
@@ -28,14 +26,17 @@ LDFLAGS = -L$(MLX_DIR)/build -L/Users/$(USER)/.brew/opt/glfw/lib
 
 LIBS = -lmlx42 -ldl -lglfw -pthread -lm
 
-$(NAME): $(LIBFT) $(MLX42) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
-
 makelibft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
+$(NAME): $(LIBFT) $(MLX42) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(HEADERS) $(LIBS) -L$(LIBFT_DIR) -lft 
+
 $(MLX42):
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4	
+
+$(LIBFT):
+	make -C ./libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
